@@ -1,0 +1,78 @@
+/* ============================================
+   VARIABLES.CSS — Colors, fonts, and root vars
+   Edit this file to change the entire theme
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap');
+
+:root {
+  /* --- Purple Palette --- */
+  --void:      #0a0612;   /* page background */
+  --deep:      #120d1f;   /* section background alt */
+  --ink:       #1c1530;   /* cards/borders base */
+  --grape:     #2d1b5e;   /* mid purple */
+  --amethyst:  #6b3fa0;   /* primary purple */
+  --violet:    #9b59d0;   /* highlight purple */
+  --lavender:  #c49ee8;   /* body text */
+  --lilac:     #e2d0f8;   /* light text */
+  --ghost:     #f5eeff;   /* headings / white-ish */
+  --accent:    #d4a8ff;   /* italic / accent text */
+  --spark:     #ff6bff;   /* hot pink accent */
+  --gold:      #e8c87a;   /* optional warm accent */
+
+  /* --- Typography --- */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-mono:    'DM Mono', monospace;
+
+  /* --- Spacing --- */
+  --section-pad: 140px 60px;
+  --section-pad-mobile: 80px 30px;
+}
+
+/* ============================================
+   BASE RESET & GLOBAL STYLES
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--void);
+  color: var(--lilac);
+  font-family: var(--font-mono);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.3;
+}
+
+/* Scroll reveal base state */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
